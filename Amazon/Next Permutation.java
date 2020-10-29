@@ -1,33 +1,54 @@
-class Solution {
-    public void nextPermutation(int[] nums) 
-    {
-        int i=nums.length-2;
-        while(i>=0&&nums[i+1]<=nums[i])
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+ {
+	public static void main (String[] args)
+	 {
+     	Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0)
         {
-            i--;
-        }
-        if(i>=0)
-        {
-            int j=nums.length-1;
-            while(j>=0&&nums[j]<=nums[i])
+            int n=sc.nextInt();
+            int ar[]=new int[n];
+            for(int i=0;i<n;i++)
+            {
+                ar[i]=sc.nextInt();
+            }
+            int i=n-2;
+            while(i>=0&&ar[i]>ar[i+1])
+            {
+                i--;
+            }
+            int j=n-1;
+            while(j>=0&&ar[i]>=ar[j])
             {
                 j--;
             }
-            swap(nums,i,j);
+            //System.out.println(ar[i]+"  "+ar[j]);
+            swap(ar,i,j);
+            //System.out.println(ar[i]+"  "+ar[j]);
+            reverse(ar,i+1,n-1);
+            for(int k=0;k<n;k++)
+            {
+                System.out.print(ar[k]+" ");
+            }
+            System.out.println();
         }
-        reverse(nums,i+1);
-    }
-    public void reverse(int[] nums, int start) {
-        int i = start, j = nums.length - 1;
-        while (i < j) {
-            swap(nums, i, j);
-            i++;
-            j--;
-        }
-    }
-    private void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
+	 }
+	 public static void swap(int ar[],int i,int j)
+	 {
+	     int temp=ar[i];
+	     ar[i]=ar[j];
+	     ar[j]=temp;
+	 }
+	 public static void reverse(int ar[],int i,int j)
+	 {
+	     while(i<j)
+	     {
+	         swap(ar,i,j);
+	         i++;
+	         j--;
+	     }
+	 }
 }
